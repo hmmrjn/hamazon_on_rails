@@ -9,6 +9,18 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to("商品一覧", "/items") %>
+      <% if @user_logged_in %>
+        <%= link_to(@user_logged_in.name, "/users/#{@user_logged_in.id}") %>
+        <%= link_to("ログアウト", "/logout", method: :post) %>
+      <% else %>
+        <%= link_to("ログイン", "/login") %>
+      <% end %>
+    </nav>
+    <% flash.each do |type, msg| %>
+      <div class= "alert alert-<%= type %>" ><%= msg %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
