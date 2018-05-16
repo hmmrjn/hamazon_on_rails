@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, only: [:edit, :update, :destroy]
+
+  # prevent users from editing others users info
+  def authorize_user
+    if @user_logged_in.id != params[:id].to_i
+      flash[:warning] = "権限がありません"
+      redirect_to "/items"
+    end
+  end
 
   #GET /login
   def login_form
