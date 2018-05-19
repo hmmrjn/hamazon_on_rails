@@ -16,6 +16,8 @@ class OrderController < ApplicationController
         purchase_price: cart_item.item.price
       )
     end
+    @current_cart = Cart.new
+    session[:cart_id] = @current_cart.id
     flash[:success] = '注文を確定しました'
     redirect_to "/order/#{order.id}"
   end
