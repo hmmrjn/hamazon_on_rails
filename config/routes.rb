@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'cart/show'
+  get 'cart/' => 'cart#show'
+  post 'cart/add_item' => 'cart#add_item'
+  post 'cart/update_item' => 'cart#update_item'
+  post 'cart/remove_item/:item_id' => 'cart#remove_item'
 
   get "/login" => "users#login_form"
   post "/login" => "users#attempt_login"

@@ -17,3 +17,15 @@
 
 <%= link_to 'Edit', edit_item_path(@item) %> |
 <%= link_to 'Back', items_path %>
+
+<%= form_tag '/cart/add_item/' do %>
+  <p>
+    数量: <select name="quantity">
+    <% for n in 1..10 do %>
+      <option value="<%= n %>"><%= n %></option>
+    <% end %>
+    </select>
+    <input type="hidden" name="item_id" value="<%= @item.id %>">
+    <input type="submit" value="カートに追加">
+  </p>
+<% end %>

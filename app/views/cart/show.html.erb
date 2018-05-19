@@ -1,2 +1,16 @@
-<h1>Cart#show</h1>
-<p>Find me in app/views/cart/show.html.erb</p>
+<h1>カート</h1>
+<ul>
+  <% @cart_items.each do |cart_item| %>
+  <li>
+    <%= cart_item.item.name %>
+    <%= cart_item.item.price %>円
+    <%= cart_item.quantity %>個
+    <%= form_tag '/cart/update_item/' do %>
+        <input name="quantity" value="<%= cart_item.quantity %>">
+        <input type="hidden" name="item_id" value="<%= cart_item.item.id %>">
+        <input type="submit" value="更新">
+    <% end %>
+    <%= link_to '削除', 'cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
+  </li>
+  <% end %>
+</ul>

@@ -11,6 +11,7 @@
   <body>
     <nav>
       <%= link_to("商品一覧", "/items") %>
+      <%= link_to("カート", "/cart") %>
       <% if @user_logged_in %>
         <%= link_to(@user_logged_in.name, "/users/#{@user_logged_in.id}") %>
         <%= link_to("ログアウト", "/logout", method: :post) %>
