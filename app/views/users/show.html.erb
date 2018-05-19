@@ -17,3 +17,14 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h2>注文履歴</h2>
+<ul>
+  <% @orders.each do |order| %>
+  <li>
+    <%= order.created_at.strftime("%Y-%m-%d") %>
+    <%= order.total_amount.to_s(:delimited) %>円
+    <%= link_to "詳細", "/order/#{order.id}" %>
+  </li>
+  <% end %>
+</ul>
