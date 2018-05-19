@@ -9,6 +9,7 @@
   </head>
 
   <body>
+    <p>//Under Construction.</p>
     <nav>
       <%= link_to("商品一覧", "/items") %>
       <%= link_to("カート", "/cart") %>
@@ -16,6 +17,7 @@
         <%= link_to(@user_logged_in.name, "/users/#{@user_logged_in.id}") %>
         <%= link_to("ログアウト", "/logout", method: :post) %>
       <% else %>
+        <%= link_to("新規会員", "/users/new") %>
         <%= link_to("ログイン", "/login") %>
       <% end %>
     </nav>
