@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'order/:id' => 'order#show'
+  post 'order/create' => 'order#create'
+
   get 'cart/' => 'cart#show'
   post 'cart/add_item' => 'cart#add_item'
   post 'cart/update_item' => 'cart#update_item'

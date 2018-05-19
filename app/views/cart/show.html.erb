@@ -10,7 +10,8 @@
         <input type="hidden" name="item_id" value="<%= cart_item.item.id %>">
         <input type="submit" value="更新">
     <% end %>
-    <%= link_to '削除', 'cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
+    <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
   </li>
   <% end %>
 </ul>
+<%= button_to '注文を確定', '/order/create', method: :post %>

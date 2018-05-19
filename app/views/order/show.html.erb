@@ -1,0 +1,11 @@
+<h1>注文</h1>
+<ul>
+  <% @order.order_items.each do |order_item| %>
+  <li>
+    <%= order_item.item.name %>
+    <%= order_item.purchase_price %>円
+    <%= order_item.quantity %>個
+  </li>
+  <% end %>
+</ul>
+支払金額: <%= @order.total_amount %>円

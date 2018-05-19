@@ -16,6 +16,7 @@ class CartController < ApplicationController
   end
 
   def update_item
+    #TODO when received quantity 0
     @cart_item.update(quantity: params[:quantity])
     redirect_to cart_path
   end
