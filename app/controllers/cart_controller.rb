@@ -9,7 +9,7 @@ class CartController < ApplicationController
     if @cart_item.blank?
       @cart_item = @current_cart.cart_items.new(item_id: params[:item_id], quantity: params[:quantity])
     else
-      @cart_item.quantity += params[:quantity]
+      @cart_item.quantity += params[:quantity].to_i
     end
     @cart_item.save
     redirect_to cart_path
