@@ -1,33 +1,31 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>名前:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>メールアドレス:</strong>
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
+<% if @user_logged_in && @user_logged_in.id == @user.id %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <%= link_to '会員情報の編集', edit_user_path(@user) %>
 
-<h2>注文履歴</h2>
-<ul>
-  <% @user.orders.each do |order| %>
-  <li>
-    <%= order.created_at.strftime("%Y-%m-%d") %>
-    <%= order.total_amount.to_s(:delimited) %>円
-    <%= link_to "詳細", "/order/#{order.id}" %>
-  </li>
-  <% end %>
-</ul>
+  <h2>注文履歴</h2>
+  <ul>
+    <% @user.orders.each do |order| %>
+    <li>
+      <%= order.created_at.strftime("%Y-%m-%d") %>
+      <%= order.total_amount.to_s(:delimited) %>円
+      <%= link_to "詳細", "/order/#{order.id}" %>
+    </li>
+    <% end %>
+  </ul>
+
+<% end %>
 
 <h2>レビュー</h2>
 <ul>
