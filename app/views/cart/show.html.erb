@@ -13,5 +13,8 @@
     <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
   </li>
   <% end %>
+  <% if @cart_items.blank? %>
+    <li>カートは空です</li>
+  <% end %>
 </ul>
 <%= button_to '注文を確定', '/order/create', method: :post %>

@@ -12,17 +12,20 @@ class CartController < ApplicationController
       @cart_item.quantity += params[:quantity].to_i
     end
     @cart_item.save
+    flash[:notice] = "商品をカートに追加しました"
     redirect_to cart_path
   end
 
   def update_item
     #TODO when received quantity 0
     @cart_item.update(quantity: params[:quantity])
+    flash[:notice] = "カートを更新しました"
     redirect_to cart_path
   end
 
   def remove_item
     @cart_item.destroy
+    flash[:notice] = "商品をカートから削除しました"
     redirect_to cart_path
   end
 
