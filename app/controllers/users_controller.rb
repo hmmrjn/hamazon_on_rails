@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @orders = Order.where(user_id: @user_logged_in)
+    @orders = @user.orders
     @reviews = @user.reviews
   end
 
