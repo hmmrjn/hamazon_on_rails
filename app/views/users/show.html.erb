@@ -28,3 +28,16 @@
   </li>
   <% end %>
 </ul>
+
+<h2>レビュー</h2>
+<ul>
+  <% @reviews.each do |review| %>
+  <li>
+    <%= review.created_at.strftime("%Y-%m-%d") %>
+    ★<%= review.score %>
+    <%= review.item.name %>
+    <%= review.title %>
+    <%= link_to "詳細・編集", review %>
+  </li>
+  <% end %>
+</ul>
