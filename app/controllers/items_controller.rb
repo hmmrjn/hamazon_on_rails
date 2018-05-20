@@ -32,6 +32,13 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        if image = params[:item][:image]
+          image_name = "#{@item.id}.jpg"
+          File.binwrite("public/item_images/#{image_name}", image.read)
+          @item.update(image_name: image_name)
+        else
+          @item.update(image_name: "default_item.jpg")
+        end
         format.html { redirect_to @item, notice: '商品を出品しました' }
         format.json { render :show, status: :created, location: @item }
       else
@@ -46,6 +53,11 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
+        if image = params[:item][:image]
+          image_name = "#{@item.id}.jpg"
+          File.binwrite("public/item_images/#{image_name}", image.read)
+          @item.update(image_name: image_name)
+        end
         format.html { redirect_to @item, notice: '商品情報を更新しました' }
         format.json { render :show, status: :ok, location: @item }
       else
