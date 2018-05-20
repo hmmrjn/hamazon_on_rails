@@ -29,3 +29,40 @@
     <input type="submit" value="カートに追加">
   </p>
 <% end %>
+
+<h2>カスタマーレビュー(<%= @reviews.size %>件)</h2>
+<% @reviews.each do |review| %>
+  ★<%= review.score %>
+  <b><%= review.title %></b>
+  <%= review.content %>
+  <% if review.user%>
+    <%= review.user.name %>
+  <% else %>
+    匿名ユーザ
+  <% end %>
+  <br>
+<% end %>
+
+<h2>レビュー投稿</h2>
+<%= form_tag("/reviews") do %>
+  <% if @review.errors.any? %>
+    <ul>
+    <% @review.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  <div class="field">
+    <%= select :review, :score, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]], :selected => @review.score %>
+  </div>
+    <div class="field">
+    <input name="review[title]" value="<%= @review.title %>">
+  </div>
+  <div class="field">
+    <textarea name="review[content]" value="<%= @review.content %>"></textarea>
+  </div>
+  <input name="review[item_id]" type="hidden" value="<%= @item.id %>">
+  <div class="actions">
+    <input type="submit" value="投稿">
+  </div>
+<% end %>
