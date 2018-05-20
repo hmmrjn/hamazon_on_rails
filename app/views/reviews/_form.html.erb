@@ -12,31 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :item_id %>
-    <%= form.text_field :item_id, id: :review_item_id %>
+    <%= form.label :score, "評価" %>
+    <%= select :review, :score, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]], :selected => @review.score %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :review_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :score %>
-    <%= form.number_field :score, id: :review_score %>
-  </div>
-
-  <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, "見出し" %>
     <%= form.text_field :title, id: :review_title %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, "内容" %>
     <%= form.text_area :content, id: :review_content %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "保存" %>
   </div>
 <% end %>
