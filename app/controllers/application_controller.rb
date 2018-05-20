@@ -17,4 +17,11 @@ class ApplicationController < ActionController::Base
       session[:cart_id] = @current_cart.id
     end
   end
+
+  def require_login
+    unless @user_logged_in
+      flash[:notice] = "ログインが必要です"
+      redirect_to login_path
+    end
+  end
 end

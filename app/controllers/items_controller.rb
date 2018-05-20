@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user, only: [:edit, :update, :destroy]
+  before_action :require_login, only: [:new]
 
   # GET /items
   # GET /items.json
@@ -26,7 +28,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @item = @user_logged_in.items.new(item_params)
 
     respond_to do |format|
       if @item.save
@@ -72,5 +74,13 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:name, :price, :description)
+    end
+
+    # prevent users from editing others users items
+    def authenticate_user
+      unless @user_logged_in && @item.user && @item.user.id == @user_logged_in.id
+        flash[:notice] = "権限がありません"
+        redirect_to(items_path)
+      end
     end
 end

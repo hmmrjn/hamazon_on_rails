@@ -20,7 +20,7 @@
 
 <h2>注文履歴</h2>
 <ul>
-  <% @orders.each do |order| %>
+  <% @user.orders.each do |order| %>
   <li>
     <%= order.created_at.strftime("%Y-%m-%d") %>
     <%= order.total_amount.to_s(:delimited) %>円
@@ -31,13 +31,24 @@
 
 <h2>レビュー</h2>
 <ul>
-  <% @reviews.each do |review| %>
+  <% @user.reviews.each do |review| %>
   <li>
     <%= review.created_at.strftime("%Y-%m-%d") %>
     ★<%= review.score %>
     <%= review.item.name %>
     <%= review.title %>
     <%= link_to "詳細・編集", review %>
+  </li>
+  <% end %>
+</ul>
+
+<h2>出品一覧</h2>
+<ul>
+  <% @user.items.each do |item| %>
+  <li>
+    <%= link_to item.name, item %>
+    <%= item.price.to_s(:delimited) %>円
+    <%= item.created_at.strftime("%Y-%m-%d") %>
   </li>
   <% end %>
 </ul>
