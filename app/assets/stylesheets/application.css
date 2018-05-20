@@ -13,20 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-.alert {
-  margin: 20px 0;
-}
-
-.alert-notice, .alert-info {
-  color: royalblue;
-}
-.alert-success {
-  color: mediumseagreen;
-}
-.alert-caution {
-  color: sandybrown;
-}
-.alert-danger {
-  color: tomato;
-}

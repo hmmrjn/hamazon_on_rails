@@ -9,8 +9,9 @@
   </head>
 
   <body>
-    <p>//Under Construction.</p>
-    <nav>
+    <header>
+      <div id="logo">Hamazon</div>
+      <nav>
       <%= link_to("商品一覧", "/items") %>
       <%= link_to("カート", "/cart") %>
       <% if @user_logged_in %>
@@ -20,10 +21,13 @@
         <%= link_to("新規会員", "/users/new") %>
         <%= link_to("ログイン", "/login") %>
       <% end %>
-    </nav>
+      </nav>
+    </header>
     <% flash.each do |type, msg| %>
-      <div class= "alert alert-<%= type %>"><%= msg %></div>
+    <div class= "alert alert-<%= type %>"><%= msg %></div>
     <% end %>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>
