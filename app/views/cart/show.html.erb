@@ -1,6 +1,15 @@
 <h1>カート</h1>
+<% if @order && @order.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @order.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <ul>
-  <% @cart_items.each do |cart_item| %>
+  <% @current_cart.cart_items.each do |cart_item| %>
   <li>
     <%= cart_item.item.name %>
     <%= cart_item.item.price %>円
@@ -13,8 +22,12 @@
     <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
   </li>
   <% end %>
-  <% if @cart_items.blank? %>
+  <% if @current_cart.cart_items.blank? %>
     <li>カートは空です</li>
   <% end %>
 </ul>
-<%= button_to '注文を確定', '/order/create', method: :post %>
+<% if @current_cart.cart_items.present? %>
+  <%= button_to '注文を確定', '/order/create', method: :post %>
+<% else %>
+  <%= button_to '注文を確定', root_path, :disabled => true %>
+<% end %>
