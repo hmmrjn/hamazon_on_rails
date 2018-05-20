@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   root 'items#index'
   get 'order/:id' => 'order#show'
   post 'order/create' => 'order#create'
