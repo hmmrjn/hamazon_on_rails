@@ -15,9 +15,9 @@
     <%= cart_item.item.price %>円
     <%= cart_item.quantity %>個
     <%= form_tag '/cart/update_item/' do %>
-        <input name="quantity" value="<%= cart_item.quantity %>">
+        <input class="cart-item-quantity-input" name="quantity" value="<%= cart_item.quantity %>">
         <input type="hidden" name="item_id" value="<%= cart_item.item.id %>">
-        <input type="submit" value="更新">
+        <input class="cart-item-quantity-submit" type="submit" value="更新">
     <% end %>
     <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
   </li>

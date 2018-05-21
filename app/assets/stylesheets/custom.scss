@@ -1,4 +1,6 @@
 $theme_color: mediumseagreen;
+$theme_color_font_color: white;
+$theme_neutral_color: darkgray;
 
 * {
   box-sizing: border-box;
@@ -15,8 +17,52 @@ a {
   color: gray;
 }
 
+input {
+  padding: 0 10px;
+  font-size: 18px;
+  margin: 10px 0;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  border-radius: 2px;
+  display: block;
+}
+
+input[type="submit"] {
+  background: $theme_color;
+  color: $theme_color_font_color;
+}
+
+textarea {
+  font-size: 18px;
+  padding: 0 10px;
+  height: 80px;
+  border: 1px solid rgba(0, 0, 0, .1);
+  display: block;
+}
+
+select {
+  font-size: 18px;
+  padding: 0 10px;
+  height: 40px;
+  min-width: 60px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, .1);
+  text-align: center;
+}
+
+.cart-item-quantity-input {
+  width: 50px;
+  display: inline-block;
+}
+
+input[type="submit"].cart-item-quantity-submit {
+  display: inline-block;
+  width: 60px;
+  background-color: $theme_neutral_color;
+}
+
 header {
-  color: white;
+  color: $theme_color_font_color;
   background: $theme_color;
   line-height: 70px;
   // box-shadow: 0 3px 3px rgba(0, 0, 0, .3);
@@ -70,6 +116,10 @@ header {
       }
     }
   }
+  input, textarea {
+    width: 100%;
+  }
+
 }
 
 
