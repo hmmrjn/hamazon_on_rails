@@ -50,6 +50,11 @@ select {
   text-align: center;
 }
 
+// kill iphone button styling
+input[type="button"],input[type="submit"],select {
+  -webkit-appearance: none;
+}
+
 .cart-item-quantity-input {
   width: 50px;
   display: inline-block;
