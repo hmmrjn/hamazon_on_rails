@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.where(deleted: false)
   end
 
   # GET /items/1
@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   # DELETE /items/1.json
   def destroy
-    @item.destroy
+    @item.update(deleted: true)
     respond_to do |format|
       format.html { redirect_to items_url, notice: '商品を削除しました' }
       format.json { head :no_content }

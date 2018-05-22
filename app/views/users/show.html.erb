@@ -46,7 +46,7 @@
 
 <h2>出品一覧</h2>
 <ul>
-  <% @user.items.each do |item| %>
+  <% @user.items.where(deleted: false).each do |item| %>
   <li>
     <%= link_to item.name, item %>
     <%= item.price.to_s(:delimited) %>円
