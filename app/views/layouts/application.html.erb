@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <header>
       <div id="logo"><%= link_to "hamazon", items_path %></div>
@@ -17,12 +16,12 @@
       <%= link_to(cart_path) do %><i class="fa fa-shopping-cart"></i> カート<%end %>
       <% if @user_logged_in %>
       <div class="dropdown">
-        <button class="dropbtn">
+        <button class="dropbtn" id="user-dropdown-btn">
           <i class="fa fa-user"></i>
           <%= @user_logged_in.name %>
           <i class="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-content">
+        <div class="dropdown-content" id="user-dropdown-content">
           <%= link_to("アカウント", @user_logged_in) %>
           <%= link_to("ログアウト", "/logout", method: :post) %>
         </div>
@@ -39,5 +38,18 @@
     <main>
     <%= yield %>
     </main>
+    <script type="text/javascript">
+    var display = true;
+    $('.dropbtn').click(function(e){
+      e.stopPropagation();
+      $('.dropdown-content').toggle(display);
+      display = !display;
+    });
+     $('body').click(function(e){
+       if ($(e.target).not('.dropdown')){
+         $('.dropdown-content').hide();
+       }
+     });
+    </script>
   </body>
 </html>
