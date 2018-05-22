@@ -1,5 +1,7 @@
+<div class="form-card">
 <h1>商品情報の編集</h1>
 
 <%= render 'form', item: @item %>
 
-<%= link_to 'キャンセル', @item %>
+<%= button_to 'キャンセル', @item, method: :get, class: "negative-button" %>
+</div>

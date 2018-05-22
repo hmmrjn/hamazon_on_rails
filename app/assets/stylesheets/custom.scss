@@ -35,9 +35,12 @@ input {
   display: block;
 }
 
-input[type="submit"] {
+input[type="submit"], button {
   background: $theme_color;
   color: $theme_color_font_color;
+  &.negative-button {
+    background: gray;
+  }
 }
 
 textarea {
@@ -130,7 +133,7 @@ h2 {
   top: 0;
 }
 
-.login-signup-card {
+.form-card {
   background: white;
   margin: 50px auto;
   padding: 50px;
@@ -145,6 +148,9 @@ h2 {
   }
   input[type="submit"] {
     margin-top: 40px;
+  }
+  textarea {
+    width: 100%;
   }
 }
 
@@ -227,7 +233,7 @@ h2 {
   .side-button {
     position: static;
   }
-  .login-signup-card {
+  .form-card {
     margin: 0;
     padding: 40px 20px 80px;
     height: 100%;
