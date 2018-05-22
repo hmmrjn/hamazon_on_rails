@@ -137,21 +137,24 @@ h2 {
 }
 
 .alert {
-  background: white;
   padding: 20px 10px;
+  text-align: center;
 }
-
 .alert-notice, .alert-info {
   color: royalblue;
+  background: lightblue;
 }
 .alert-success {
-  color: mediumseagreen;
+  color: seagreen;
+  background: lightgreen;
 }
 .alert-caution {
   color: sandybrown;
+  background: navajowhite;
 }
 .alert-danger {
   color: tomato;
+  background: lightpink;
 }
 
 @media (max-width: 670px) {
