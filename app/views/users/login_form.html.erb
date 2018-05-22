@@ -1,8 +1,10 @@
-<h1>ログイン</h1>
-<%= form_tag "/login" do %>
-  <%= label_tag :name, "メールアドレス" %>
-  <input name="email" value="<%= @email_previous_input %>">
-  <%= label_tag :name, "パスワード" %>
-  <input name="password" type="password">
-  <input type="submit" value="ログイン">
-<% end %>
+<div class="login-signup-card">
+  <h1>ログイン</h1>
+  <%= form_tag "/login" do %>
+    <%= label_tag :name, "メールアドレス" %>
+    <input name="email" value="<%= @email_previous_input %>" required>
+    <%= label_tag :name, "パスワード" %>
+    <input name="password" type="password" required>
+    <input type="submit" value="ログイン">
+  <% end %>
+</div>
