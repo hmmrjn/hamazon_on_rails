@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -15,12 +16,21 @@
       <%= link_to("商品一覧", "/items") %>
       <%= link_to("カート", "/cart") %>
       <% if @user_logged_in %>
-        <%= link_to(@user_logged_in.name, "/users/#{@user_logged_in.id}") %>
-        <%= link_to("ログアウト", "/logout", method: :post) %>
-      <% else %>
-        <%= link_to("新規会員", "/users/new") %>
-        <%= link_to("ログイン", "/login") %>
-      <% end %>
+      <div class="dropdown">
+        <button class="dropbtn">
+          <i class="fa fa-user"></i>
+          <%= @user_logged_in.name %>
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <%= link_to("アカウント", @user_logged_in) %>
+          <%= link_to("ログアウト", "/logout", method: :post) %>
+        </div>
+        <% else %>
+          <%= link_to("新規会員", "/users/new") %>
+          <%= link_to("ログイン", "/login") %>
+        <% end %>
+      </div>
       </nav>
     </header>
     <% flash.each do |type, msg| %>
