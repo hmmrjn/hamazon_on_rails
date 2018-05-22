@@ -15,6 +15,12 @@ html, body {
   height: 100%;
 }
 
+.container {
+  margin: 0 auto;
+  max-width: 750px;
+  position: relative;
+}
+
 a {
   color: gray;
 }
@@ -118,6 +124,12 @@ h2 {
   margin-top: 32px;
 }
 
+.side-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
 .login-signup-card {
   background: white;
   margin: 50px auto;
@@ -133,6 +145,37 @@ h2 {
   }
   input[type="submit"] {
     margin-top: 40px;
+  }
+}
+
+.item-card {
+  background: white;
+  margin: 50px auto;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
+  border-radius: 4px;
+  transition: .3;
+  img {
+    border-radius: 4px 4px 0 0;
+    height: 200px;
+    width: 200px;
+    vertical-align: bottom;
+    object-fit: cover;
+  }
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
+  }
+  .item-card-right {
+    vertical-align: top;
+    display: inline-block;
+    padding: 40px;
+    .item-card-title {
+      font-size: 24px;
+      font-weight: 600;
+      color: black;
+    }
+    .item-card-description {
+      margin-top: 20px;
+    }
   }
 }
 
@@ -181,10 +224,41 @@ h2 {
   input, textarea {
     width: 100%;
   }
+  .side-button {
+    position: static;
+  }
   .login-signup-card {
     margin: 0;
     padding: 40px 20px 80px;
     height: 100%;
   }
-
+  .item-card {
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .3);
+    img {
+      width: 100%;
+      height: 180px;
+    }
+    .item-card-right {
+      width: 100%;
+      padding: 10px;
+      min-height: 80px;
+      position: relative;
+      .item-card-title {
+        margin-top: 0;
+        font-size: 18px;
+      }
+      .item-card-price {
+        padding: 10px;
+        height: 200px;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      .item-card-description {
+        margin-top: 0;
+        font-size: 12px;
+      }
+    }
+  }
 }

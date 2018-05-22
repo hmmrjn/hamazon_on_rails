@@ -1,23 +1,18 @@
+<div class="container">
+
 <h1>商品一覧</h1>
+<%= button_to '商品を出品する', new_item_path, method: :get, class: "side-button" %>
+<% @items.each do |item| %>
+<%= link_to item do %>
+<div class="item-card">
+  <img src="/item_images/<%= item.image_name %>">
+  <div class="item-card-right">
+    <div class="item-card-title"><%= item.name %></div>
+    <div class="item-card-price"><%= item.price.to_s(:delimited) %>円</div>
+    <div class="item-card-description"><%= item.description %></div>
+  </div>
+</div>
+<% end %>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品</th>
-      <th>価格</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= link_to item.name, item %></td>
-        <td><%= item.price.to_s(:delimited) %>円</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to '商品を出品する', new_item_path %>
+</div>
