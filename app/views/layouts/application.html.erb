@@ -11,10 +11,10 @@
 
   <body>
     <header>
-      <div id="logo">Hamazon</div>
+      <div id="logo"><%= link_to "hamazon", items_path %></div>
       <nav>
-      <%= link_to("商品一覧", "/items") %>
-      <%= link_to("カート", "/cart") %>
+      <%= link_to("商品一覧", items_path) %>
+      <%= link_to(cart_path) do %><i class="fa fa-shopping-cart"></i> カート<%end %>
       <% if @user_logged_in %>
       <div class="dropdown">
         <button class="dropbtn">
