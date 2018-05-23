@@ -9,6 +9,10 @@
 
 <div class="item-card-price">
   <%= @item.price.to_s(:delimited) %>円
+  <% unless @item.reviews.blank? %>
+  <i class="fa fa-star"></i>
+  <%= @item.reviews.average(:score).floor(1) %>
+  <% end %>
 </div>
 
 <p>
@@ -42,19 +46,35 @@
 
 <div class="card">
 <h2>カスタマーレビュー (<%= @reviews.size %>件)</h2>
-<% @reviews.each do |review| %>
-  ★<%= review.score %>
-  <b><%= review.title %></b>
-  <%= review.content %>
-  <% if review.user%>
-    <%= link_to review.user.name, review.user %>
+<p>
+  <% unless @item.reviews.blank? %>
+  <strong>平均点:</strong>
+  <i class="fa fa-star"></i>
+  <%= @item.reviews.average(:score).floor(1) %>
   <% else %>
-    匿名ユーザ
+    レビューはまだありません
   <% end %>
-  <br>
-<% end %>
-<% if @reviews.blank? %>
-  レビューはまだありません
+</p>
+<% @reviews.each do |review| %>
+  <% for n in 0...review.score %>
+  <i class="fa fa-star"></i>
+  <% end %>
+  <% for n in review.score...5 %>
+  <i class="fa fa-star deactivated"></i>
+  <% end %>
+  <div class="review-title"><%= review.title %></div>
+  <div class="review-content">
+    <div class="review-user">
+    <i class="fa fa-user"></i>
+      <% if review.user%>
+        <%= link_to review.user.name, review.user %>:
+      <% else %>
+        匿名:
+      <% end %>
+    </div>
+    <%= review.content %>
+  </div>
+  <hr class="reviews-hr">
 <% end %>
 </div>
 
@@ -68,7 +88,8 @@
     <% end %>
     </ul>
   <% end %>
-    <%= select :review, :score, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]], :selected => @review.score %> ★
+    <%= select :review, :score, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]], :selected => @review.score %>
+    <i class="fa fa-star"></i>
     <input name="review[title]" value="<%= @review.title %>" placeholder="見出し">
     <textarea name="review[content]" value="<%= @review.content %>" placeholder="本文"></textarea>
     <input name="review[item_id]" type="hidden" value="<%= @item.id %>">

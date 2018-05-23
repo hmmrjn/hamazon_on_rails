@@ -25,6 +25,16 @@ a {
   color: gray;
 }
 
+hr {
+  border: 1px solid rgba(0, 0, 0, .1);
+  &.reviews-hr {
+    margin: 20px 5px;
+    &:last-child {
+      display: none;
+    }
+  }
+}
+
 input {
   padding: 0 10px;
   font-size: 18px;
@@ -252,9 +262,20 @@ h2 {
   &.item-card-big .item-card-right {
     width: 48%;
   }
-  hr {
-    border: 1px solid rgba(0, 0, 0, .1);
-  }
+}
+
+.review-title {
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 20px;
+}
+.review-content {
+  margin: 10px 0;
+}
+.review-user {
+  margin-right: 6px;
+  display: inline-block;
+  color: gray;
 }
 
 .alert {
@@ -276,6 +297,16 @@ h2 {
 .alert-danger {
   color: crimson;
   background: lightpink;
+}
+
+//font awesome icon
+.fa-star {
+  color: orange;
+  letter-spacing: -3px;
+}
+.fa-star.deactivated {
+  color: silver;
+  letter-spacing: -3px;
 }
 
 @media (max-width: 670px) {
