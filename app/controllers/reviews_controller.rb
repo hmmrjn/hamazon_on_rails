@@ -25,7 +25,8 @@ class ReviewsController < ApplicationController
         format.html { redirect_to @review.item, notice: 'レビューを投稿しました' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        flash[:danger] = '入力に不備があります'
+        format.html { redirect_to @review.item }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
