@@ -235,7 +235,7 @@ h2 {
   img {
     border-radius: 4px 0 0 4px;
     height: 200px;
-    width: 200px;
+    width: 30%;
     vertical-align: top;
     object-fit: cover;
   }
@@ -243,6 +243,7 @@ h2 {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
   }
   .item-card-right {
+    width: 68%;
     vertical-align: top;
     display: inline-block;
     padding: 40px;
@@ -253,6 +254,7 @@ h2 {
     }
     .item-card-description {
       margin-top: 20px;
+      font-size: 14px;
     }
   }
   &.item-card-big img {

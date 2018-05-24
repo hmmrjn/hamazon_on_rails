@@ -9,7 +9,9 @@
   <div class="item-card-right">
     <div class="item-card-title"><%= item.name %></div>
     <div class="item-card-price"><%= item.price.to_s(:delimited) %>円</div>
-    <div class="item-card-description"><%= item.description %></div>
+    <div class="item-card-description">
+    <%= truncate item.description, length: 60 %>
+    </div>
   </div>
 </div>
 <% end %>
