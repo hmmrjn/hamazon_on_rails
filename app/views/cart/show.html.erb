@@ -1,33 +1,53 @@
-<h1>カート</h1>
-<% if @order && @order.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-    <% @order.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-<ul>
+<div class="container">
+  <h1>カート</h1>
+  <% if @order && @order.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <% @current_cart.cart_items.each do |cart_item| %>
-  <li>
-    <%= cart_item.item.name %>
-    <%= cart_item.item.price %>円
-    <%= cart_item.quantity %>個
-    <%= form_tag '/cart/update_item/' do %>
+  <div class="cart-item">
+    <img src="/item_images/<%= cart_item.item.image_name %>">
+    <div class="cart-item-content">
+      <%= cart_item.item.name %>
+      <br>
+      <%= cart_item.item.price.to_s(:delemited) %>円
+      <%= cart_item.quantity %>個
+      <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
+      <a id="quantity-form-trigger-<%= cart_item.id %>">数量変更</a>
+      <div id="quantity-form-<%= cart_item.id %>" class="cart-item-quantity-form">
+        <%= form_tag '/cart/update_item/' do %>
         <input class="cart-item-quantity-input" name="quantity" value="<%= cart_item.quantity %>">
         <input type="hidden" name="item_id" value="<%= cart_item.item.id %>">
         <input class="cart-item-quantity-submit" type="submit" value="更新">
-    <% end %>
-    <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
-  </li>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <% end %>
   <% if @current_cart.cart_items.blank? %>
-    <li>カートは空です</li>
+  <p>カートは空です</p>
   <% end %>
-</ul>
-<% if @current_cart.cart_items.present? %>
+  <p>合計金額: <%= @current_cart.total_amount.to_s(:delimited) %>円</p>
+  <% if @current_cart.cart_items.present? %>
   <%= button_to '注文を確定', '/order/create', method: :post %>
-<% else %>
-  <%= button_to '注文を確定', root_path, :disabled => true %>
-<% end %>
+  <% else %>
+  <%= button_to '注文を確定', root_path, disabled: true %>
+  <% end %>
+</div>
+<script>
+//TODO refactor this uglyness
+<%
+  first_id = @current_cart.cart_items.first.id
+  last_id = @current_cart.cart_items.last.id
+%>
+for(let i = <%= first_id %>; i <= <%= last_id %>; i++){
+  $('#quantity-form-trigger-'+i).click(()=>{
+    $('#quantity-form-'+i).show();
+  });
+}
+</script>
