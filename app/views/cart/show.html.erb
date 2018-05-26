@@ -39,6 +39,7 @@
   <%= button_to '注文を確定', root_path, disabled: true %>
   <% end %>
 </div>
+<% unless @current_cart.cart_items.blank? %>
 <script>
 //TODO refactor this uglyness
 <%
@@ -51,3 +52,4 @@ for(let i = <%= first_id %>; i <= <%= last_id %>; i++){
   });
 }
 </script>
+<% end %>
