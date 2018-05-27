@@ -12,6 +12,7 @@
     <div class="item-card-description">
     <%= truncate item.description, length: 60 %>
     </div>
+    <%= render 'score', score: item.score %>
   </div>
 </div>
 <% end %>

@@ -9,10 +9,7 @@
 
 <div class="item-card-price">
   <%= @item.price.to_s(:delimited) %>円
-  <% unless @item.reviews.blank? %>
-  <i class="fa fa-star"></i>
-  <%= @item.reviews.average(:score).floor(1) %>
-  <% end %>
+  <%= render 'score', score: @item.score %>
 </div>
 
 <p>
@@ -50,18 +47,13 @@
   <% unless @item.reviews.blank? %>
   <strong>平均点:</strong>
   <i class="fa fa-star"></i>
-  <%= @item.reviews.average(:score).floor(1) %>
+  <%= @item.score %>
   <% else %>
     レビューはまだありません
   <% end %>
 </p>
 <% @reviews.each do |review| %>
-  <% for n in 0...review.score %>
-  <i class="fa fa-star"></i>
-  <% end %>
-  <% for n in review.score...5 %>
-  <i class="fa fa-star deactivated"></i>
-  <% end %>
+  <%= render 'score', score: review.score %>
   <div class="review-title"><%= review.title %></div>
   <div class="review-content">
     <div class="review-user">
