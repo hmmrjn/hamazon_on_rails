@@ -225,7 +225,7 @@ h2 {
 
 .item-card {
   background: white;
-  margin: 50px auto;
+  margin: 30px auto;
   box-shadow: 0 5px 5px rgba(0, 0, 0, .3);
   border-radius: 4px;
   transition: .3;
@@ -250,7 +250,7 @@ h2 {
       color: black;
     }
     .item-card-description {
-      margin-top: 20px;
+      margin-top: 14px;
       font-size: 14px;
     }
   }
@@ -391,8 +391,12 @@ h2 {
         right: 0;
       }
       .item-card-description {
-        margin-top: 0;
-        font-size: 12px;
+        margin-top: 5px;
+        font-size: 11px;
+      }
+      .score {
+        display: inline-block;
+        font-size: 13px;
       }
     }
   }

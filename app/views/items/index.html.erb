@@ -9,10 +9,10 @@
   <div class="item-card-right">
     <div class="item-card-title"><%= item.name %></div>
     <div class="item-card-price"><%= item.price.to_s(:delimited) %>円</div>
+    <%= render 'score', score: item.score %>
     <div class="item-card-description">
     <%= truncate item.description, length: 60 %>
     </div>
-    <%= render 'score', score: item.score %>
   </div>
 </div>
 <% end %>
