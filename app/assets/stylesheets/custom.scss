@@ -263,6 +263,10 @@ h2 {
   }
 }
 
+.score {
+  display: inline-block;
+}
+
 .item-line {
   line-height: 40px;
   img {
@@ -395,7 +399,6 @@ h2 {
         font-size: 11px;
       }
       .score {
-        display: inline-block;
         font-size: 13px;
       }
     }
