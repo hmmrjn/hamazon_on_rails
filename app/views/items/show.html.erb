@@ -65,7 +65,7 @@
       <% end %>
     </div>
     <%= review.content %>
-    <% if review.user && review.user.id == @user_logged_in.id %>
+    <% if @user_logged_in && review.user && review.user.id == @user_logged_in.id %>
      | <%= link_to '編集', edit_review_path(review) %>
     <% end %>
   </div>
