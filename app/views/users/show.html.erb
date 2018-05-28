@@ -1,59 +1,62 @@
-<p>
-  <strong>名前:</strong>
-  <%= @user.name %>
-</p>
+<div class="container">
 
-<p>
-  <strong>メールアドレス:</strong>
-  <%= @user.email %>
-</p>
+  <h1><%= @user.name %></h1>
 
-<% if @user_logged_in && @user_logged_in.id == @user.id %>
+  <% if @user_logged_in && @user_logged_in.id == @user.id %>
+  <div class="card">
+    <h2>会員情報</h2>
+    <strong>名前:</strong>
+    <%= @user.name %>
+    <hr>
+    <strong>メールアドレス:</strong>
+    <%= @user.email %>
+    <br><br>
+    <%= button_to '会員情報の編集', edit_user_path(@user), method: :get %>
+  </div>
 
-  <%= link_to '会員情報の編集', edit_user_path(@user) %>
-
-  <h2>注文履歴</h2>
-  <ul>
+  <div class="card">
+    <h2>注文履歴</h2>
     <% @user.orders.each do |order| %>
-    <li>
-      <%= order.created_at.strftime("%Y-%m-%d") %>
-      <%= order.total_amount.to_s(:delimited) %>円
-      <%= link_to "詳細", "/order/#{order.id}" %>
-    </li>
+    <%= order.created_at.strftime("%Y/%m/%d") %> ・
+    <%= order.total_amount.to_s(:delimited) %>円 ・
+    <%= link_to "明細", "/order/#{order.id}" %>
+    <hr>
     <% end %>
     <% if @user.orders.blank? %>
-      <li>まだ注文がありません</li>
+    <p>まだ注文がありません</p>
     <% end %>
-  </ul>
+  </div>
+  <% end %>
 
-<% end %>
+  <div class="card">
+    <h2>出品一覧</h2>
+    <% @user.items.where(deleted: false).each do |item| %>
+    <div class="item-line">
+      <img src="/item_images/<%= item.image_name %>">
+      <%= link_to item.name, item %> ・
+      <%= item.price.to_s(:delimited) %>円 ・
+      <%= item.created_at.strftime("%Y/%m/%d") %>
+    </div>
+    <hr>
+    <% end %>
+    <% if @user.items.blank? %>
+    <p>まだ出品がありません</p>
+    <% end %>
+  </div>
 
-<h2>レビュー</h2>
-<ul>
-  <% @user.reviews.each do |review| %>
-  <li>
-    <%= review.created_at.strftime("%Y-%m-%d") %>
-    ★<%= review.score %>
-    <%= review.item.name %>
-    <%= review.title %>
-    <%= link_to "詳細・編集", review %>
-  </li>
-  <% end %>
-  <% if @user.reviews.blank? %>
-    <li>まだレビューを投稿していません</li>
-  <% end %>
-</ul>
+  <div class="card">
+    <h2>カスタマーレビュー</h2>
+    <% @user.reviews.each do |review| %>
+    <%= link_to review.item.name, review.item %><br>
+    <%= render "items/score", score: review.score %>
+    <b><%= review.title %></b><br>
+    <%= review.created_at.strftime("%Y/%m/%d") %>
+    <%= link_to "詳細", review %>
+    <hr>
+    <% end %>
+    <% if @user.reviews.blank? %>
+    <p>まだレビューを投稿していません</p>
+    <% end %>
+  </div>
 
-<h2>出品一覧</h2>
-<ul>
-  <% @user.items.where(deleted: false).each do |item| %>
-  <li>
-    <%= link_to item.name, item %>
-    <%= item.price.to_s(:delimited) %>円
-    <%= item.created_at.strftime("%Y-%m-%d") %>
-  </li>
-  <% end %>
-  <% if @user.items.blank? %>
-    <li>まだ出品がありません</li>
-  <% end %>
-</ul>
+</div>

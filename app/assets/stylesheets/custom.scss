@@ -25,16 +25,6 @@ a {
   color: gray;
 }
 
-hr {
-  border: 1px solid rgba(0, 0, 0, .1);
-  &.reviews-hr {
-    margin: 20px 5px;
-    &:last-child {
-      display: none;
-    }
-  }
-}
-
 input {
   padding: 0 10px;
   font-size: 18px;
@@ -224,6 +214,13 @@ h2 {
   .item-card-description {
     margin-top: 20px;
   }
+  hr {
+    border: 1px solid rgba(0, 0, 0, .1);
+    margin: 20px 5px;
+    &:last-child {
+      display: none;
+    }
+  }
 }
 
 .item-card {
@@ -263,6 +260,15 @@ h2 {
   }
   &.item-card-big .item-card-right {
     width: 48%;
+  }
+}
+
+.item-line {
+  line-height: 40px;
+  img {
+    height: 40px;
+    margin-right: 10px;
+    vertical-align: bottom;
   }
 }
 
