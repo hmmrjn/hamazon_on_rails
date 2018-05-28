@@ -58,13 +58,16 @@
   <div class="review-content">
     <div class="review-user">
     <i class="fa fa-user"></i>
-      <% if review.user%>
+      <% if review.user %>
         <%= link_to review.user.name, review.user %>:
       <% else %>
         匿名:
       <% end %>
     </div>
     <%= review.content %>
+    <% if review.user && review.user.id == @user_logged_in.id %>
+     | <%= link_to '編集', edit_review_path(review) %>
+    <% end %>
   </div>
   <hr>
 <% end %>
