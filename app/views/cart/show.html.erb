@@ -13,13 +13,13 @@
   <div class="cart-item">
     <img src="/item_images/<%= cart_item.item.image_name %>">
     <div class="cart-item-content">
-      <%= cart_item.item.name %>
+      <%= link_to cart_item.item.name, cart_item.item %>
       <br>
       <%= cart_item.item.price.to_s(:delemited) %>円
       <%= cart_item.quantity %>個
       <%= link_to '削除', '/cart/remove_item/' + cart_item.item.id.to_s, method: :post %>
-      <a id="quantity-form-trigger-<%= cart_item.id %>">数量変更</a>
-      <div id="quantity-form-<%= cart_item.id %>" class="cart-item-quantity-form">
+      <a class="cart-item-quantity-form-trigger">数量変更</a>
+      <div class="cart-item-quantity-form">
         <%= form_tag '/cart/update_item/' do %>
         <input class="cart-item-quantity-input" name="quantity" value="<%= cart_item.quantity %>">
         <input type="hidden" name="item_id" value="<%= cart_item.item.id %>">
@@ -41,15 +41,10 @@
 </div>
 <% unless @current_cart.cart_items.blank? %>
 <script>
-//TODO refactor this uglyness
-<%
-  first_id = @current_cart.cart_items.first.id
-  last_id = @current_cart.cart_items.last.id
-%>
-for(let i = <%= first_id %>; i <= <%= last_id %>; i++){
-  $('#quantity-form-trigger-'+i).click(()=>{
-    $('#quantity-form-'+i).show();
+$(function(){
+  $('.cart-item-quantity-form-trigger').click(function() {
+    $(this).next('.cart-item-quantity-form').show();
   });
-}
+});
 </script>
 <% end %>
