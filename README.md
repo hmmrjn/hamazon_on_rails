@@ -1,24 +1,36 @@
-# README
+# About
+This is a web application I made to study Ruby on Rails.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I tried to make a simple Shopping Site. (A not practical one.)
 
-Things you may want to cover:
 
-* Ruby version
+# Demo
+Heroku Demo
 
-* System dependencies
+https://hamazon-on-rails.herokuapp.com
 
-* Configuration
 
-* Database creation
+# Versions
+* Ruby 2.4
+* Rails 5.1.6
 
-* Database initialization
 
-* How to run the test suite
+# Run Locally
 
-* Services (job queues, cache servers, search engines, etc.)
+```sh
+$ git clone https://github.com/hmmrjn/hamazon_on_rails.git
+$ cd hamazon_on_rails
+$ bundle install
+$ rails db:migrate
+$ rails server
+# Press Ctrl+C to quit.
+```
+Open http://localhost:3000/
 
-* Deployment instructions
 
-* ...
+
+
+# See Also
+Original Hamazon (Raw PHP)
+
+https://github.com/hmmrjn/hamazon
