@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :score, "評価" %>
+    <%= form.label :score, "評価" %><br>
     <%= select :review, :score, [["5", "5"], ["4", "4"], ["3", "3"], ["2", "2"], ["1", "1"]], :selected => @review.score %>
   </div>
 

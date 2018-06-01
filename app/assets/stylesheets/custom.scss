@@ -45,6 +45,7 @@ input[type="submit"], button {
 
 textarea {
   font-size: 18px;
+  margin: 10px 0;
   padding: 0 10px;
   height: 80px;
   border: 1px solid rgba(0, 0, 0, .2);
@@ -53,6 +54,7 @@ textarea {
 
 select {
   font-size: 18px;
+  margin: 10px 0;
   padding: 0 10px;
   height: 40px;
   min-width: 60px;
@@ -187,11 +189,14 @@ h2 {
     margin-left: 0;
     text-align: center;
   }
-  input {
+  form, input {
     width: 100%;
   }
   input[type="submit"] {
     margin-top: 40px;
+    &.negative-button {
+      margin-top: 10px;
+    }
   }
   textarea {
     width: 100%;

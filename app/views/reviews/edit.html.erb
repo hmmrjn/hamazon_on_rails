@@ -1,5 +1,7 @@
-<h1>レビュー編集</h1>
+<div class="form-card">
+  <h1>レビュー編集</h1>
 
-<%= render 'form', review: @review %>
+  <%= render 'form', review: @review %>
 
-<%= link_to 'キャンセル', @review %>
+  <%= button_to 'キャンセル', @review, method: :get, class: 'negative-button' %>
+</div>
