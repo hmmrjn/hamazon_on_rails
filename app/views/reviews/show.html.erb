@@ -1,33 +1,38 @@
-<p>
-  <strong>商品:</strong>
-  <%= link_to @review.item.name, @review.item %>
-</p>
+<div class="container">
+  <div class="card">
 
-<p>
-  <strong>投稿者:</strong>
-  <% if @review.user %>
-  <%= link_to @review.user.name, @review.user %>
-  <% else %>
-    匿名ユーザ
-  <% end %>
-</p>
+    <p>
+      <strong>商品:</strong>
+      <%= link_to @review.item.name, @review.item %>
+    </p>
 
-<p>
-  <strong>評価:</strong>
-  ★<%= @review.score %>
-</p>
+    <p>
+      <% if !@user_logged_in || @user_logged_in && @review.user && @user_logged_in.id != @review.user.id %>
+      <strong>投稿者:</strong>
+      <% if @review.user %>
+      <%= link_to @review.user.name, @review.user %>
+      <% else %>
+        匿名ユーザ
+      <% end %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>見出し:</strong>
-  <%= @review.title %>
-</p>
+    <p>
+      <%= render 'items/score', score: @review.score %>
+    </p>
 
-<p>
-  <strong>内容:</strong>
-  <%= @review.content %>
-</p>
+    <p>
+      <b><%= @review.title %></b>
+    </p>
 
-<% if @user_logged_in && @review.user && @user_logged_in.id == @review.user.id %>
-  <%= link_to '編集', edit_review_path(@review) %> |
-  <%= link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' } %>
-<% end %>
+    <p>
+      <%= @review.content %>
+    </p>
+
+    <% if @user_logged_in && @review.user && @user_logged_in.id == @review.user.id %>
+    <%= link_to '編集', edit_review_path(@review) %> |
+    <%= link_to '削除', @review, method: :delete, data: { confirm: '本当に削除しますか?' } %>
+    <% end %>
+
+  </div>
+</div>
