@@ -5,7 +5,11 @@
 <% @items.each do |item| %>
 <%= link_to item do %>
 <div class="item-card">
-  <img src="/item_images/<%= item.image_name %>">
+  <% if item.photo.attached? %>
+  <%= image_tag item.photo %>
+  <% else %>
+  <img src="/item_images/default_item.jpg">
+  <% end %>
   <div class="item-card-right">
     <div class="item-card-title"><%= item.name %></div>
     <div class="item-card-price"><%= item.price.to_s(:delimited) %>円</div>

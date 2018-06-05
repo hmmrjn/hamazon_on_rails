@@ -1,6 +1,8 @@
 class Item < ApplicationRecord
+  # TODO remove column images
   has_many :reviews
   belongs_to :user
+  has_one_attached :photo
 
   validates :name, :price, :description, presence: true
   validates :name, uniqueness: true

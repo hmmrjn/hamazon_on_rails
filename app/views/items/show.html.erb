@@ -1,7 +1,10 @@
 <div class="container">
   <div class="item-card item-card-big">
-
-  <img src="/item_images/<%= @item.image_name %>" width="300px">
+  <% if @item.photo.attached? %>
+  <%= image_tag @item.photo %>
+  <% else %>
+  <img src="/item_images/default_item.jpg">
+  <% end %>
   <div class="item-card-right">
     <div class="item-card-title">
     <%= @item.name %>

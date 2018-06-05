@@ -29,15 +29,10 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = @user_logged_in.items.new(item_params)
-
     respond_to do |format|
       if @item.save
-        if image = params[:item][:image]
-          image_name = "#{@item.id}.jpg"
-          File.binwrite("public/item_images/#{image_name}", image.read)
-          @item.update(image_name: image_name)
-        else
-          @item.update(image_name: "default_item.jpg")
+        if image = params[:item][:photo]
+          @item.photo.attach(params[:item][:photo])
         end
         format.html { redirect_to @item, notice: '商品を出品しました' }
         format.json { render :show, status: :created, location: @item }
@@ -53,10 +48,8 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        if image = params[:item][:image]
-          image_name = "#{@item.id}.jpg"
-          File.binwrite("public/item_images/#{image_name}", image.read)
-          @item.update(image_name: image_name)
+        if image = params[:item][:photo]
+          @item.photo.attach(params[:item][:photo])
         end
         format.html { redirect_to @item, notice: '商品情報を更新しました' }
         format.json { render :show, status: :ok, location: @item }

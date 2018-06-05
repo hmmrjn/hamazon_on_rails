@@ -32,7 +32,11 @@
     <h2>出品一覧</h2>
     <% @user.items.where(deleted: false).each do |item| %>
     <div class="item-line">
-      <img src="/item_images/<%= item.image_name %>">
+      <% if item.photo.attached? %>
+      <%= image_tag item.photo %>
+      <% else %>
+      <img src="/item_images/default_item.jpg">
+      <% end %>
       <%= link_to item.name, item %> ・
       <%= item.price.to_s(:delimited) %>円 ・
       <%= item.created_at.strftime("%Y/%m/%d") %>
